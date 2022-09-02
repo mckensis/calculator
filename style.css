@@ -1,0 +1,87 @@
+@font-face {
+    font-family: 'Digital';
+    src: url('fonts/digital.woff2') format('woff2'),
+         url('fonts/digital.woff') format('woff');
+}
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    gap: 3rem;
+    font-size: 2rem;
+    font-family: "Digital", "Courier New", monospace;
+    text-transform: uppercase;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 0.5rem solid black;
+    border-radius: 2rem;
+    background-color: grey;
+    width: 33rem;
+    height: 49rem;
+}
+
+.displaySection {
+    display: flex;
+    height: 6rem;
+    width: calc(100% - 1.5rem);
+    padding: 0rem 1rem 1rem 0rem;
+    margin: 1rem 0rem 0.5rem 0rem;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: yellow;
+    border-radius: 1.5rem;
+    font-size: 5rem;
+}
+
+.keypadSection, 
+.digitSection,
+.operatorSection,
+.equals {
+    display: flex;
+}
+
+.digitSection {
+    flex-wrap: wrap-reverse;
+}
+
+.operatorSection {
+    flex-direction: column;
+}
+
+button {
+    color: black;
+    width: 7rem;
+    height: 7rem;
+    margin: 0.5rem;
+    font-size: 2rem;
+    border-radius: 1.5rem;
+}
+
+button.operator {
+    background-color: red;
+    font-size: 2.5rem;
+}
+
+button.clear {
+    background-color: darkgrey;
+}
+
+button.equals {
+    align-items: center;
+    justify-content: center;
+    width: 31rem;
+    background-color: orange;
+}
