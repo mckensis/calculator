@@ -17,6 +17,7 @@ body {
     width: 100vw;
     height: 100vh;
     gap: 3rem;
+    background-color: #F7B32B;
     font-size: 2rem;
     font-family: "Digital", "Courier New", monospace;
     text-transform: uppercase;
@@ -34,16 +35,25 @@ main {
 }
 
 .displaySection {
-    display: flex;
     height: 6rem;
     width: calc(100% - 1.5rem);
     padding: 0rem 1rem 1rem 0rem;
     margin: 1rem 0rem 0.5rem 0rem;
+    background-color: #8DAA91;
+    border-radius: 1.5rem;
+    font-size: 6rem;
+    padding: 0;
+}
+
+.displaySection p.output {
+    display: flex;
     justify-content: flex-end;
     align-items: center;
-    background-color: yellow;
-    border-radius: 1.5rem;
     font-size: 5rem;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding-right: 0.5rem;
 }
 
 .keypadSection, 
@@ -71,17 +81,43 @@ button {
 }
 
 button.operator {
-    background-color: red;
+    background-color: #DD6031;
     font-size: 2.5rem;
 }
 
 button.clear {
-    background-color: darkgrey;
+    background-color: #C3423F;
 }
 
 button.equals {
     align-items: center;
     justify-content: center;
     width: 31rem;
-    background-color: orange;
+    background-color: #FF7733;
+}
+
+@media screen and (max-width: 800px) {
+
+    main {
+        width: 25rem;
+        height: 40rem;
+        justify-content: center;
+    }
+
+    button {
+        width: 4rem;
+        height: 4rem;
+    }
+
+    button.equals {
+        width: 23.5rem;
+    }
+
+    .digitSection {
+        justify-content: space-evenly;
+    }
+
+    .displaySection p.output {
+        font-size: 3.5rem;
+    }
 }
