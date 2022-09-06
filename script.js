@@ -1,9 +1,5 @@
-const display = document.querySelector('.displaySection');
 const output = document.querySelector('.output');
-const digitButtons = document.querySelectorAll('button');
-const operatorButtons = document.querySelectorAll('.operator');
-const clearButton = document.querySelector('.clear');
-const equalsButton = document.querySelector('.equals');
+const calculatorButtons = document.querySelectorAll('button');
 
 let numbers = [];
 let operators = [];
@@ -29,6 +25,7 @@ function clearDisplay() {
     numberSaved = false;
     totalled = false;
     operatorCount = 0;
+    decimalCount = 0;
     operator = undefined;
 };
 
@@ -99,10 +96,17 @@ function totalSum(button) {
     // Testing for a decimal place and rounding the total if there is one.
     let stringTotal = String(total);
     if (stringTotal.includes(".")) {
-        total = Math.round((total + Number.EPSILON) * 10000000) / 10000000;
+        if (stringTotal.length > 12) {
+            total = Math.round((total + Number.EPSILON) * 10000000) / 10000000;
+        }
+    }
+
+    while (stringTotal.length > 12) {
+        total = stringTotal.slice(0, -1);
     }
 
     output.textContent = total;
+    
     saveNumber();
 }
 
@@ -161,6 +165,6 @@ function populateDisplay(e) {
     }
 };
 
-for (const button of digitButtons) {
+for (const button of calculatorButtons) {
     button.addEventListener('click', populateDisplay);
 };
