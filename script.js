@@ -36,7 +36,7 @@ function saveNumber() {
     numberSaved = true;
 
     console.log("just saved number: " + numbers[0]);
-    while (numbers.length > 3) {
+    while (numbers.length > 5) {
         numbers.pop();   
     }
     decimalCount = 0;
@@ -74,6 +74,9 @@ function totalSum(button) {
     let num1 = numbers[1];
     let num2 = numbers[0];
 
+    console.log("num1 is type: " + typeof num1);
+    console.log("num2 is type: " + typeof num2);
+
     switch (operator) {
         case "add":
             total = num1 + num2;
@@ -97,16 +100,18 @@ function totalSum(button) {
     let stringTotal = String(total);
     if (stringTotal.includes(".")) {
         if (stringTotal.length > 12) {
-            total = Math.round((total + Number.EPSILON) * 10000000) / 10000000;
-        }
+            stringTotal = Math.round((total + Number.EPSILON) * 100) / 100;
     }
 
+    // Truncate the end of the "number" if it's too large
     while (stringTotal.length > 12) {
-        total = stringTotal.slice(0, -1);
+        stringTotal.slice(0, -1);
     }
 
+    total = Number(stringTotal);
     output.textContent = total;
-    
+    operatorCount = 0;
+    operator = undefined;
     saveNumber();
 }
 
