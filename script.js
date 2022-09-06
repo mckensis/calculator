@@ -101,18 +101,19 @@ function totalSum(button) {
     if (stringTotal.includes(".")) {
         if (stringTotal.length > 12) {
             stringTotal = Math.round((total + Number.EPSILON) * 100) / 100;
-    }
+        }
 
-    // Truncate the end of the "number" if it's too large
-    while (stringTotal.length > 12) {
-        stringTotal.slice(0, -1);
-    }
+        // Truncate the end of the "number" if it's too large
+        while (stringTotal.length > 12) {
+            stringTotal.slice(0, -1);
+        }
 
-    total = Number(stringTotal);
-    output.textContent = total;
-    operatorCount = 0;
-    operator = undefined;
-    saveNumber();
+        total = Number(stringTotal);
+    }
+        output.textContent = total;
+        operatorCount = 0;
+        operator = undefined;
+        saveNumber();
 }
 
 function populateDisplay(e) {
@@ -162,24 +163,20 @@ function populateDisplay(e) {
         }
 
     } else if (button.classList.contains("equals")) {
-
         if(length > 0) {
-
             saveNumber();
             totalSum(button.value);
-
         } else {
             output.textContent = "ERROR";
         }
     } else if (button.classList.contains("backspace")) {
-            if (length > 0) 
-                output.textContent = output.textContent.slice(0, -1);
-            } else {
-                output.textContent = '';
-            }
-
-};
+        if (length > 0) 
+            output.textContent = output.textContent.slice(0, -1);
+        } else {
+            output.textContent = '';
+    }
+}
 
 for (const button of calculatorButtons) {
     button.addEventListener('click', populateDisplay);
-};
+}
