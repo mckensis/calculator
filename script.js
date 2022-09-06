@@ -10,6 +10,8 @@ let operators = [];
 let numberSaved = false;
 let operatorCount = 0;
 let totalled = false;
+let operator = undefined;
+let decimalCount = 0;
 
 function clearDisplay() {
     while (numbers.length > 0) {
@@ -18,11 +20,16 @@ function clearDisplay() {
     while (operators.length > 0) {
         operators.pop();
     }
-
+    
+    numbers = [];
+    operators = [];
+    
     output.textContent = '';
+    
     numberSaved = false;
     totalled = false;
     operatorCount = 0;
+    operator = undefined;
 };
 
 function saveNumber() {
@@ -35,6 +42,7 @@ function saveNumber() {
     while (numbers.length > 3) {
         numbers.pop();   
     }
+    decimalCount = 0;
     return;
 }
 
@@ -56,12 +64,9 @@ function totalSum(button) {
     if (!numberSaved) {
         saveNumber();
         numbers.shift();
-        numberSaved = false;
-
+        output.textContent = numbers[0];
         return;
     }
-
-    let operator = undefined;
 
     if (button === "=") {
         operator = operators[0];
@@ -91,6 +96,12 @@ function totalSum(button) {
             break;
     }
 
+    // Testing for a decimal place and rounding the total if there is one.
+    let stringTotal = String(total);
+    if (stringTotal.includes(".")) {
+        total = Math.round((total + Number.EPSILON) * 10000000) / 10000000;
+    }
+
     output.textContent = total;
     saveNumber();
 }
@@ -105,25 +116,24 @@ function populateDisplay(e) {
     }
 
     const button = e.target;
-
     const length = output.textContent.length;
 
     if (button.classList.contains("clear")) {
-
         clearDisplay();
         return;
-
-    } else if (button.classList.contains("digit")) {
-
-
-        if (length == 1 && button.value == 0) {
+    } else if (button.classList.contains("decimal")) {
+        if (decimalCount === 0) {
+            output.textContent += button.value;
+            decimalCount++;
+        } else {
             return;
-        } else if (output.textContent.startsWith("0")) {
+        }
+    } else if (button.classList.contains("digit") && (length < 12)) {
+        if (output.textContent.startsWith("0") && (output.textContent.charAt(1) !== ".")) {
             output.textContent = button.value;
-        } else if (length < 12) {
+        } else {
             output.textContent += button.value;
         }
-
     } else if (button.classList.contains("operator")) {
         
         if (length > 0) {
@@ -146,7 +156,6 @@ function populateDisplay(e) {
             totalSum(button.value);
 
         } else {
-
             output.textContent = "ERROR";
         }
     }
