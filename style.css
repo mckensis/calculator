@@ -11,13 +11,14 @@
 
 body {
     display: flex;
+    cursor: default;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     width: 100vw;
     height: 100vh;
     gap: 3rem;
-    background-color: #F7B32B;
+    background-color: #E1BC29;
     font-size: 2rem;
     font-family: "Digital", "Courier New", monospace;
     text-transform: uppercase;
@@ -25,11 +26,11 @@ body {
 
 main {
     display: flex;
+    background-color: #89937C;
     flex-direction: column;
     align-items: center;
-    border: 0.5rem solid black;
+    border: 0.5rem solid #090302;
     border-radius: 2rem;
-    background-color: grey;
     width: 33rem;
     height: 49rem;
 }
@@ -40,6 +41,7 @@ main {
     padding: 0rem 1rem 1rem 0rem;
     margin: 1rem 0rem 0.5rem 0rem;
     background-color: #8DAA91;
+    color: #090302;
     border-radius: 1.5rem;
     font-size: 6rem;
     padding: 0;
@@ -71,29 +73,67 @@ main {
     flex-direction: column;
 }
 
+.bottomSection {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 button {
-    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #090302;
+    border-color: #090302;
     width: 7rem;
     height: 7rem;
     margin: 0.5rem;
     font-size: 2rem;
     border-radius: 1.5rem;
+    background-color: #B5B682;
+    cursor: grab;
 }
 
 button.operator {
-    background-color: #DD6031;
+    background-color: #5E5D5C;
     font-size: 2.5rem;
 }
 
-button.clear {
-    background-color: #C3423F;
+button.clear,
+button.backspace {
+    background-color: #CAD593;
+    font-size: 1.5rem;
 }
 
 button.equals {
-    align-items: center;
-    justify-content: center;
-    width: 31rem;
-    background-color: #FF7733;
+    width: 23rem;
+    background-color: #A1C349;
+}
+
+button:hover {
+    border-radius: 2.5rem;
+    background-color: #E57A44;
+}
+
+button.digit:hover {
+    background-color: #2B2118;
+    color: #FEDC97;
+}
+
+button.operator:hover {
+    background-color: #4D4730;
+}
+
+button.equals:hover {
+    background-color: #87A330;
+}
+
+button:active {
+    border-radius: 3rem;
+}
+
+button.digit:active {
+    border-color: #254441;
 }
 
 @media screen and (max-width: 500px) {
@@ -112,14 +152,7 @@ button.equals {
     }
 
     main {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        align-self: center;
-        border: 0.5rem solid black;
-        border-radius: 2rem;
-        background-color: grey;
-        max-width: 90vw;
+        max-width: 23rem;
         max-height: 35rem;
     }
 
@@ -132,9 +165,9 @@ button.equals {
         text-align: center;
     }
 
-    button.equals {
-        width: 23.5rem;
-        max-width: 75vw;
+    .bottomSection {
+        max-width: calc(100% - 0.1rem);
+        overflow:hidden;
     }
 
     .digitSection {

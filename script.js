@@ -132,7 +132,11 @@ function populateDisplay(e) {
         } else {
             return;
         }
-    } else if (button.classList.contains("digit") && (length < 12)) {
+    } else if (button.classList.contains("digit")) {
+        if (length > 11) {
+            return;
+        }
+
         if (output.textContent.startsWith("0") && (output.textContent.charAt(1) !== ".")) {
             output.textContent = button.value;
         } else {
@@ -162,7 +166,13 @@ function populateDisplay(e) {
         } else {
             output.textContent = "ERROR";
         }
-    }
+    } else if (button.classList.contains("backspace")) {
+            if (length > 0) 
+                output.textContent = output.textContent.slice(0, -1);
+            } else {
+                output.textContent = '';
+            }
+
 };
 
 for (const button of calculatorButtons) {
