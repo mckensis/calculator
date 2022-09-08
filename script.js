@@ -59,7 +59,7 @@ function totalSum(button) {
     //do something here
     //to save output.textContent after a sum
     if (!numberSaved) {
-        saveNumber();
+        saveNumber
         numbers.shift();
         output.textContent = numbers[0];
         return;
@@ -111,8 +111,8 @@ function totalSum(button) {
         total = Number(stringTotal);
     }
         output.textContent = total;
-        operatorCount = 0;
         operator = undefined;
+        operatorCount--;
         saveNumber();
 }
 
@@ -157,7 +157,6 @@ function populateDisplay(e) {
 
         if (operatorCount == 2) {
             totalSum();
-            operatorCount--;
         }
 
     } else if (button.classList.contains("equals")) {
