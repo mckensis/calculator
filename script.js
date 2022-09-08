@@ -119,11 +119,6 @@ function totalSum(button) {
 function populateDisplay(e) {
     
     e.preventDefault();
-    
-    if (numberSaved) {
-        output.textContent = '';
-        numberSaved = false;
-    }
 
     const button = e.target;
     const length = output.textContent.length;
@@ -142,7 +137,10 @@ function populateDisplay(e) {
         if (length > 11) {
             return;
         }
-
+        if (numberSaved) {
+            output.textContent = '';
+            numberSaved = false;
+        }
         if (output.textContent.startsWith("0") && (output.textContent.charAt(1) !== ".")) {
             output.textContent = button.value;
         } else {
